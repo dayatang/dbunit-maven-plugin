@@ -37,8 +37,7 @@ import java.util.Properties;
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
  * @version $Id: AbstractDbUnitMojoTest.java 10098 2009-07-11 15:17:34Z david $
  */
-public abstract class AbstractDbUnitMojoTest
-        extends TestCase {
+public abstract class AbstractDbUnitMojoTest extends TestCase {
     protected Properties p;
 
     protected Connection c;
@@ -47,8 +46,7 @@ public abstract class AbstractDbUnitMojoTest
         return new File(System.getProperty("basedir", System.getProperty("user.dir")));
     }
 
-    protected void setUp()
-            throws Exception {
+    protected void setUp() throws Exception {
         super.setUp();
 
         loadTestProperties();

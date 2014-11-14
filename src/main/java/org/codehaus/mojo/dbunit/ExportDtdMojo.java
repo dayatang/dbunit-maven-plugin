@@ -41,50 +41,20 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 
 /**
- * Execute DbUnit Export operation
+ * Execute DbUnit Export DTD operation
  *
- * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
- * @author <a href="mailto:topping@codehaus.org">Brian Topping</a>
- * @author <a href="mailto:david@codehaus.org">David J. M. Karlsen</a>
- * @version $Id: ExportMojo.java 9171 2009-03-07 18:21:11Z david $
- * @goal export
+ * @author <a href="mailto:gdyangyu@gmail.com">Yu Yang</a>
+ * @version $Id: ExportDtdMojo.java 9171 2014-11-14 18:21:11Z Yu Yang $
+ * @goal exportDtd
  */
 public class ExportDtdMojo
         extends AbstractDbUnitMojo {
     /**
-     * Location of exported DataSet file
+     * Location of exported DTD file
      *
-     * @parameter expression="${dest}" default-value="${project.build.directory}/dbunit/export.xml"
+     * @parameter expression="${dest}" default-value="${basedir}/src/test/resources/dataset.dtd"
      */
     protected File dest;
-
-    /**
-     * DataSet file format
-     *
-     * @parameter expression="${format}" default-value="xml"
-     */
-    protected String format;
-
-    /**
-     * List of DbUnit's Table.  See DbUnit's JavaDoc for details
-     *
-     * @parameter
-     */
-    protected Table[] tables;
-
-    /**
-     * List of DbUnit's Query.  See DbUnit's JavaDoc for details
-     *
-     * @parameter
-     */
-    protected Query[] queries;
-
-    /**
-     * Set to true to order exported data according to integrity constraints defined in DB.
-     *
-     * @parameter
-     */
-    protected boolean ordered;
 
     /**
      * Encoding of exported data.

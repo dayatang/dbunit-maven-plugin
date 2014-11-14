@@ -180,6 +180,14 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <reporting>
@@ -193,9 +201,7 @@
                     <columnNames>Key,Summary,Status,Resolution,Assignee,Type,Version,Fix Version</columnNames>
                     <generateJiraAnnouncement>true</generateJiraAnnouncement>
                     <toAddresses>
-                        <toAddress>dev@mojo.codehaus.org</toAddress>
-                        <toAddress>user@mojo.codehaus.org</toAddress>
-                        <toAddress>users@maven.apache.org</toAddress>
+                        <toAddress>gdyangyu@gmail.com</toAddress>
                     </toAddresses>
                 </configuration>
             </plugin>

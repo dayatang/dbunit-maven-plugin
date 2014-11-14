@@ -19,21 +19,21 @@
 -->
 
 <project>
-   <body>
-      <links>
-        <item name="DbUnit" href="http://dbunit.sourceforge.net"/>
-      </links>
-      <menu name="Overview">
-         <item name="Introduction" href="index.html"/>
-         <item name="Goals" href="plugin-info.html"/>
-         <item name="Usage" href="usage.html"/>
-         <item name="FAQ" href="faq.html"/>
-      </menu>
-      <menu name="Examples">
-         <item name="clean-insert" href="examples/clean-insert.html"/>
-         <item name="export database" href="examples/export-full.html"/>
-         <item name="settings" href="examples/settings.html"/>
-      </menu>
-   </body>
+    <body>
+        <links>
+            <item name="DbUnit" href="http://dbunit.sourceforge.net"/>
+        </links>
+        <menu name="Overview">
+            <item name="Introduction" href="index.html"/>
+            <item name="Goals" href="plugin-info.html"/>
+            <item name="Usage" href="usage.html"/>
+            <item name="FAQ" href="faq.html"/>
+        </menu>
+        <menu name="Examples">
+            <item name="clean-insert" href="examples/clean-insert.html"/>
+            <item name="export database" href="examples/export-full.html"/>
+            <item name="settings" href="examples/settings.html"/>
+        </menu>
+    </body>
 </project>
 

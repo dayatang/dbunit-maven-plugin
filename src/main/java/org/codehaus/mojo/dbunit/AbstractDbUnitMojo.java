@@ -43,102 +43,107 @@ import org.dbunit.dataset.datatype.IDataTypeFactory;
 
 /**
  * Common configurations for all DBUnit operations
+ *
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
  * @author <a href="mailto:topping@codehaus.org">Brian Topping</a>
  * @version $Id: AbstractDbUnitMojo.java 10099 2009-07-11 15:24:24Z david $
  * @requiresDependencyResolution compile
  */
 public abstract class AbstractDbUnitMojo
-    extends AbstractMojo
-{
+        extends AbstractMojo {
 
     /**
      * The class name of the JDBC driver to be used.
-     * 
-     * @parameter expression="${driver}" 
+     *
+     * @parameter expression="${driver}"
      * @required
      */
     protected String driver;
 
     /**
-     * Database username.  If not given, it will be looked up through 
+     * Database username.  If not given, it will be looked up through
      * settings.xml's server with ${settingsKey} as key
-     * @parameter expression="${username}" 
+     *
+     * @parameter expression="${username}"
      */
     protected String username;
 
     /**
-     * Database password. If not given, it will be looked up through settings.xml's 
+     * Database password. If not given, it will be looked up through settings.xml's
      * server with ${settingsKey} as key
-     * @parameter expression="${password}" 
+     *
+     * @parameter expression="${password}"
      */
     protected String password;
 
     /**
      * The JDBC URL for the database to access, e.g. jdbc:db2:SAMPLE.
-     * 
+     *
      * @parameter
-     * @required expression="${url}" 
+     * @required expression="${url}"
      */
     protected String url;
 
     /**
      * The schema name that tables can be found under.
-     * 
-     * @parameter expression="${schema}" 
+     *
+     * @parameter expression="${schema}"
      */
     protected String schema;
 
     /**
      * Set the DataType factory to add support for non-standard database vendor data types.
-     * 
+     *
      * @parameter expression="${dataTypeFactoryName}" default-value="org.dbunit.dataset.datatype.DefaultDataTypeFactory"
      */
     protected String dataTypeFactoryName = "org.dbunit.dataset.datatype.DefaultDataTypeFactory";
 
     /**
      * Enable or disable usage of JDBC batched statement by DbUnit
+     *
      * @parameter expression="${supportBatchStatement}" default-value="false"
      */
     protected boolean supportBatchStatement;
 
     /**
      * Enable or disable multiple schemas support by prefixing table names with the schema name.
-     * 
+     *
      * @parameter expression="${useQualifiedTableNames}" default-value="false"
      */
     protected boolean useQualifiedTableNames;
 
     /**
      * Enable or disable the warning message displayed when DbUnit encounter an unsupported data type.
+     *
      * @parameter expression="${datatypeWarning}" default-value="false"
      */
     protected boolean datatypeWarning;
 
     /**
      * escapePattern
-     * 
-     * @parameter expression="${escapePattern}" 
+     *
+     * @parameter expression="${escapePattern}"
      */
     protected String escapePattern;
 
     /**
      * skipOracleRecycleBinTables
-     * 
+     *
      * @parameter expression="${escapePattern}" default-value="false"
      * @since 1.0-beta-2
      */
     protected boolean skipOracleRecycleBinTables;
-    
+
     /**
      * Skip the execution when true, very handy when using together with maven.test.skip.
-     * 
+     *
      * @parameter expression="${skip}" default-value="false"
      */
     protected boolean skip;
-    
+
     /**
      * Access to hidding username/password
+     *
      * @parameter expression="${settings}"
      * @readonly
      */
@@ -147,12 +152,14 @@ public abstract class AbstractDbUnitMojo
     /**
      * Server's id in settings.xml to look up username and password.
      * Default to ${url} if not given.
-     * @parameter expression="${settingsKey}" 
+     *
+     * @parameter expression="${settingsKey}"
      */
     private String settingsKey;
 
     /**
      * Class name of metadata handler.
+     *
      * @parameter expression="${metadataHandlerName}" default-value="org.dbunit.database.DefaultMetadataHandler"
      * @since 1.0-beta-3
      */
@@ -162,52 +169,48 @@ public abstract class AbstractDbUnitMojo
 
 
     public void execute()
-        throws MojoExecutionException, MojoFailureException
-    {
+            throws MojoExecutionException, MojoFailureException {
         loadUserInfoFromSettings();
     }
 
     IDatabaseConnection createConnection()
-        throws Exception
-    {
+            throws Exception {
 
         // Instantiate JDBC driver
-        Class dc = Class.forName( driver );
+        Class dc = Class.forName(driver);
         Driver driverInstance = (Driver) dc.newInstance();
         Properties info = new Properties();
-        info.put( "user", username );
+        info.put("user", username);
 
-        if ( password != null )
-        {
-            info.put( "password", password );
+        if (password != null) {
+            info.put("password", password);
         }
 
-        Connection conn = driverInstance.connect( url, info );
+        Connection conn = driverInstance.connect(url, info);
 
-        if ( conn == null )
-        {
+        if (conn == null) {
             // Driver doesn't understand the URL
-            throw new SQLException( "No suitable Driver for " + url );
+            throw new SQLException("No suitable Driver for " + url);
         }
-        conn.setAutoCommit( true );
+        conn.setAutoCommit(true);
 
-        IDatabaseConnection connection = new DatabaseConnection( conn, schema );
+        IDatabaseConnection connection = new DatabaseConnection(conn, schema);
         DatabaseConfig config = connection.getConfig();
-        config.setFeature( DatabaseConfig.FEATURE_BATCHED_STATEMENTS, supportBatchStatement );
-        config.setFeature( DatabaseConfig.FEATURE_QUALIFIED_TABLE_NAMES, useQualifiedTableNames );
-        config.setFeature( DatabaseConfig.FEATURE_DATATYPE_WARNING, datatypeWarning );
-        config.setFeature( DatabaseConfig.FEATURE_SKIP_ORACLE_RECYCLEBIN_TABLES, this.skipOracleRecycleBinTables );
-        
-        config.setProperty( DatabaseConfig.PROPERTY_ESCAPE_PATTERN, escapePattern );
-        config.setProperty( DatabaseConfig.PROPERTY_RESULTSET_TABLE_FACTORY, new ForwardOnlyResultSetTableFactory() );
+        config.setFeature(DatabaseConfig.FEATURE_BATCHED_STATEMENTS, supportBatchStatement);
+        config.setFeature(DatabaseConfig.FEATURE_QUALIFIED_TABLE_NAMES, useQualifiedTableNames);
+        config.setFeature(DatabaseConfig.FEATURE_DATATYPE_WARNING, datatypeWarning);
+        config.setFeature(DatabaseConfig.FEATURE_SKIP_ORACLE_RECYCLEBIN_TABLES, this.skipOracleRecycleBinTables);
+
+        config.setProperty(DatabaseConfig.PROPERTY_ESCAPE_PATTERN, escapePattern);
+        config.setProperty(DatabaseConfig.PROPERTY_RESULTSET_TABLE_FACTORY, new ForwardOnlyResultSetTableFactory());
 
         // Setup data type factory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName( dataTypeFactoryName ).newInstance();
-        config.setProperty( DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory );
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName(dataTypeFactoryName).newInstance();
+        config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
 
         // Setup metadata handler
-        IMetadataHandler metadataHandler = (IMetadataHandler) Class.forName( metadataHandlerName ).newInstance();
-        config.setProperty( DatabaseConfig.PROPERTY_METADATA_HANDLER, metadataHandler );
+        IMetadataHandler metadataHandler = (IMetadataHandler) Class.forName(metadataHandlerName).newInstance();
+        config.setProperty(DatabaseConfig.PROPERTY_METADATA_HANDLER, metadataHandler);
 
         return connection;
     }
@@ -216,41 +219,33 @@ public abstract class AbstractDbUnitMojo
      * Load username password from settings if user has not set them in JVM properties
      */
     private void loadUserInfoFromSettings()
-        throws MojoExecutionException
-    {
-        if ( this.settingsKey == null )
-        {
+            throws MojoExecutionException {
+        if (this.settingsKey == null) {
             this.settingsKey = url;
         }
 
-        if ( ( username == null || password == null ) && ( settings != null ) )
-        {
-            Server server = this.settings.getServer( this.settingsKey );
+        if ((username == null || password == null) && (settings != null)) {
+            Server server = this.settings.getServer(this.settingsKey);
 
-            if ( server != null )
-            {
-                if ( username == null )
-                {
+            if (server != null) {
+                if (username == null) {
                     username = server.getUsername();
                 }
 
-                if ( password == null )
-                {
+                if (password == null) {
                     password = server.getPassword();
                 }
             }
         }
 
-        if ( username == null )
-        {
+        if (username == null) {
             //allow emtpy username
-            username =  "" ;
+            username = "";
         }
 
-        if ( password == null )
-        {
+        if (password == null) {
             //allow emtpy password
-            password = "" ;
+            password = "";
         }
     }
 

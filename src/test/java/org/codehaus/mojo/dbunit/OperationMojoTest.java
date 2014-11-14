@@ -33,70 +33,67 @@ import java.sql.Statement;
  * @version $Id: OperationMojoTest.java 6588 2008-03-28 12:22:57Z bentmann $
  */
 public class OperationMojoTest
-    extends AbstractDbUnitMojoTest
-{
-    
+        extends AbstractDbUnitMojoTest {
+
     public void testCleanInsertOperation()
-        throws Exception
-    {
+            throws Exception {
         //init database with fixed data
         OperationMojo operation = new OperationMojo();
-        this.populateMojoCommonConfiguration( operation );
-        operation.src = new File( p.getProperty( "xmlDataSource" ) );
+        this.populateMojoCommonConfiguration(operation);
+        operation.src = new File(p.getProperty("xmlDataSource"));
         operation.format = "xml";
         operation.type = "CLEAN_INSERT";
         operation.execute();
-        
+
         //check to makesure we have 2 rows after inserts thru dataset
         Statement st = c.createStatement();
-        ResultSet rs = st.executeQuery( "select count(*) from person" );
+        ResultSet rs = st.executeQuery("select count(*) from person");
         rs.next();
-        assertEquals( 2, rs.getInt(1) );  
-        
+        assertEquals(2, rs.getInt(1));
+
         //export database to another dataset file
-        File exportFile = new File( getBasedir(), "target/export.xml" );
+        File exportFile = new File(getBasedir(), "target/export.xml");
         ExportMojo export = new ExportMojo();
-        this.populateMojoCommonConfiguration( export );
+        this.populateMojoCommonConfiguration(export);
         export.dest = exportFile;
         export.format = "xml";
         export.execute();
-        
+
         //then import the exported dataset file back to DB
         operation.src = exportFile;
         operation.execute();
-        
+
         //check to makesure we have 2 rows
         st = c.createStatement();
-        rs = st.executeQuery( "select count(*) from person" );
+        rs = st.executeQuery("select count(*) from person");
         rs.next();
-        assertEquals( 2, rs.getInt(1) );     
-        
+        assertEquals(2, rs.getInt(1));
+
         //finally compare the current contents of the DB with the orginal dataset file
         CompareMojo compare = new CompareMojo();
-        this.populateMojoCommonConfiguration( compare );
-        compare.src = new File( p.getProperty( "xmlDataSource" ) );
+        this.populateMojoCommonConfiguration(compare);
+        compare.src = new File(p.getProperty("xmlDataSource"));
         compare.format = "xml";
-        compare.sort =  false ;
+        compare.sort = false;
         compare.execute();
     }
 
     public void testSkip()
-        throws Exception
-    {
+            throws Exception {
         //init database with fixed data
         OperationMojo operation = new OperationMojo();
-        this.populateMojoCommonConfiguration( operation );
-        operation.src = new File( p.getProperty( "xmlDataSource" ) );
+        this.populateMojoCommonConfiguration(operation);
+        operation.src = new File(p.getProperty("xmlDataSource"));
         operation.format = "xml";
         operation.type = "CLEAN_INSERT";
         operation.skip = true;
         operation.execute();
-            
+
         //check to makesure we have 0 rows
         Statement st = c.createStatement();
-        ResultSet rs = st.executeQuery( "select count(*) from person" );
+        ResultSet rs = st.executeQuery("select count(*) from person");
         rs.next();
         //no data  since skip is set
-        assertEquals( 0, rs.getInt(1) );           
+        assertEquals(0, rs.getInt(1));
     }
 }

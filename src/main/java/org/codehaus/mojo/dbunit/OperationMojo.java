@@ -33,35 +33,34 @@ import org.dbunit.database.IDatabaseConnection;
 
 /**
  * Execute DbUnit's Database Operation with an external dataset file.
- * 
- * @goal operation
+ *
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
  * @author <a href="mailto:topping@codehaus.org">Brian Topping</a>
  * @version $Id: OperationMojo.java 9179 2009-03-08 23:21:28Z david $
- * 
+ * @goal operation
  */
 public class OperationMojo
-    extends AbstractDbUnitMojo
-{
+        extends AbstractDbUnitMojo {
     /**
-     * Type of Database operation to perform. Supported types are UPDATE, 
-     * INSERT, DELETE, DELETE_ALL, REFRESH, CLEAN_INSERT, MSSQL_INSERT, 
+     * Type of Database operation to perform. Supported types are UPDATE,
+     * INSERT, DELETE, DELETE_ALL, REFRESH, CLEAN_INSERT, MSSQL_INSERT,
      * MSSQL_REFRESH, MSSQL_CLEAN_INSERT
-     * 
-     * @parameter expression="${type}" 
+     *
+     * @parameter expression="${type}"
      * @required
      */
     protected String type;
 
     /**
      * When true, place the entired operation in one transaction
+     *
      * @parameter expression="${transaction}" default-value="false"
      */
     protected boolean transaction;
 
     /**
      * DataSet file
-     * 
+     *
      * @parameter expression="${src}"
      * @required
      */
@@ -69,44 +68,36 @@ public class OperationMojo
 
     /**
      * Dataset file format type. Valid types are: flat, xml, csv, and dtd
-     * 
+     *
      * @parameter expression="${format}" default-value="xml";
      * @required
      */
     protected String format;
 
     public void execute()
-        throws MojoExecutionException, MojoFailureException
-    {
-        if ( skip )
-        {
-            this.getLog().info( "Skip operation: " + type + " execution" );
-            
+            throws MojoExecutionException, MojoFailureException {
+        if (skip) {
+            this.getLog().info("Skip operation: " + type + " execution");
+
             return;
         }
 
         super.execute();
-        
-        try
-        {
+
+        try {
             IDatabaseConnection connection = createConnection();
-            try
-            {
+            try {
                 Operation op = new Operation();
-                op.setFormat( format );
-                op.setSrc( src );
-                op.setTransaction( transaction );
-                op.setType( type );
-                op.execute( connection );
-            }
-            finally
-            {
+                op.setFormat(format);
+                op.setSrc(src);
+                op.setTransaction(transaction);
+                op.setType(type);
+                op.execute(connection);
+            } finally {
                 connection.close();
             }
-        }
-        catch ( Exception e )
-        {
-            throw new MojoExecutionException( "Error executing database operation: " + type, e );
+        } catch (Exception e) {
+            throw new MojoExecutionException("Error executing database operation: " + type, e);
         }
 
     }

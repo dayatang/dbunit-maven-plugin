@@ -24,22 +24,18 @@ package org.codehaus.mojo.dbunit;
  * SOFTWARE.
 */
 
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.SQLException;
-import java.util.Properties;
-
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.settings.Server;
 import org.apache.maven.settings.Settings;
-import org.dbunit.database.DatabaseConfig;
-import org.dbunit.database.DatabaseConnection;
-import org.dbunit.database.ForwardOnlyResultSetTableFactory;
-import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.database.IMetadataHandler;
+import org.dbunit.database.*;
 import org.dbunit.dataset.datatype.IDataTypeFactory;
+
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Common configurations for all DBUnit operations
@@ -140,7 +136,13 @@ public abstract class AbstractDbUnitMojo
      * @parameter expression="${skip}" default-value="false"
      */
     protected boolean skip;
-
+    /**
+     * Class name of metadata handler.
+     *
+     * @parameter expression="${metadataHandlerName}" default-value="org.dbunit.database.DefaultMetadataHandler"
+     * @since 1.0-beta-3
+     */
+    protected String metadataHandlerName;
     /**
      * Access to hidding username/password
      *
@@ -148,7 +150,6 @@ public abstract class AbstractDbUnitMojo
      * @readonly
      */
     private Settings settings;
-
     /**
      * Server's id in settings.xml to look up username and password.
      * Default to ${url} if not given.
@@ -157,16 +158,7 @@ public abstract class AbstractDbUnitMojo
      */
     private String settingsKey;
 
-    /**
-     * Class name of metadata handler.
-     *
-     * @parameter expression="${metadataHandlerName}" default-value="org.dbunit.database.DefaultMetadataHandler"
-     * @since 1.0-beta-3
-     */
-    protected String metadataHandlerName;
-
     ////////////////////////////////////////////////////////////////////
-
 
     public void execute()
             throws MojoExecutionException, MojoFailureException {

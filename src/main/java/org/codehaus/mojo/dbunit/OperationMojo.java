@@ -24,12 +24,12 @@ package org.codehaus.mojo.dbunit;
  * SOFTWARE.
 */
 
-import java.io.File;
-
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.dbunit.ant.Operation;
 import org.dbunit.database.IDatabaseConnection;
+
+import java.io.File;
 
 /**
  * Execute DbUnit's Database Operation with an external dataset file.

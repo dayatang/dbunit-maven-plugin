@@ -24,14 +24,14 @@ package org.codehaus.mojo.dbunit;
  * SOFTWARE.
 */
 
+import junit.framework.TestCase;
+
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
-
-import junit.framework.TestCase;
 
 /**
  * @author <a href="mailto:dantran@gmail.com">Dan Tran</a>
@@ -42,6 +42,10 @@ public abstract class AbstractDbUnitMojoTest
     protected Properties p;
 
     protected Connection c;
+
+    protected static File getBasedir() {
+        return new File(System.getProperty("basedir", System.getProperty("user.dir")));
+    }
 
     protected void setUp()
             throws Exception {
@@ -108,9 +112,5 @@ public abstract class AbstractDbUnitMojoTest
 
     private boolean getBooleanProperty(String key) {
         return Boolean.valueOf(p.getProperty(key, "false")).booleanValue();
-    }
-
-    protected static File getBasedir() {
-        return new File(System.getProperty("basedir", System.getProperty("user.dir")));
     }
 }

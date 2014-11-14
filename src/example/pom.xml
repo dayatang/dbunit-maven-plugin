@@ -62,7 +62,7 @@
             <plugin>
                 <groupId>org.dayatang.maven.mojo</groupId>
                 <artifactId>dbunit-maven-plugin</artifactId>
-                <version>${project.version}</version>
+                <version>@project.version@</version>
                 <dependencies>
                     <dependency>
                         <groupId>hsqldb</groupId>

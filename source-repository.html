@@ -7,11 +7,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Dan T. Tran
-dantran@gmail.com" />
     <meta name="Date-Revision-yyyymmdd" content="20141114" />
     <meta http-equiv="Content-Language" content="zh" />
-    <title>DbUnit Plugin &#x2013; Maven 2 DbUnit Plugin - Introduction</title>
+    <title>DbUnit Plugin &#x2013; 源代码库</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -59,7 +57,7 @@ dantran@gmail.com" />
         DbUnit Plugin</a>
         </li>
       <li class="divider ">/</li>
-        <li class="">Maven 2 DbUnit Plugin - Introduction</li>
+        <li class="">源代码库</li>
         
                 
                     
@@ -90,10 +88,12 @@ dantran@gmail.com" />
                 <ul class="nav nav-list">
                     <li class="nav-header">Overview</li>
                                 
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>Introduction</a>
-          </li>
+                          <a href="index.html" title="Introduction">
+          <i class="none"></i>
+        Introduction</a>
+            </li>
                   
       <li>
     
@@ -160,10 +160,12 @@ dantran@gmail.com" />
         Dependency Information</a>
             </li>
                       
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>欢迎来到</a>
-          </li>
+                          <a href="index.html" title="欢迎来到">
+          <i class="none"></i>
+        欢迎来到</a>
+            </li>
                       
       <li>
     
@@ -186,12 +188,10 @@ dantran@gmail.com" />
         项目团队</a>
             </li>
                       
-      <li>
+      <li class="active">
     
-                          <a href="source-repository.html" title="源代码库">
-          <i class="none"></i>
-        源代码库</a>
-            </li>
+            <a href="#"><i class="none"></i>源代码库</a>
+          </li>
                       
       <li>
     
@@ -263,24 +263,26 @@ dantran@gmail.com" />
         <div id="bodyColumn"  class="span9" >
                                   
             <div class="section">
-<h2><a name="DbUnit_Maven_Plugin"></a>DbUnit Maven Plugin</h2>
-<p>Use this plugin to execute <a class="externalLink" href="http://dbunit.sourceforge.net">DbUnit</a>'s utilities.</p>
+<h2><a name="a"></a>&#x6982;&#x8ff0;</h2><a name="a"></a>
+<p>This project uses <a class="externalLink" href="http://git-scm.com/">GIT</a> to manage its source code. Instructions on GIT use can be found at <a class="externalLink" href="http://git-scm.com/documentation">http://git-scm.com/documentation</a>.</p></div>
 <div class="section">
-<h3><a name="Goals_Overview"></a>Goals Overview</h3>
-<ul>
-<li><a href="#operation-mojo.html">dbunit:operation</a>: Execute a database operation using an external dataset file.</li>
-<li><a href="#export-mojo.html">dbunit:export</a>: Export database tables into a dataset file.</li>
-<li><a href="#compare-mojo.html">dbunit:compare</a>: Compare a dataset with database.</li></ul></div>
+<h2><a name="Web"></a>Web&#x8bbf;&#x95ee;</h2><a name="Web"></a>
+<p>&#x4ee5;&#x4e0b;&#x662f;&#x5728;&#x7ebf;&#x6e90;&#x4ee3;&#x7801;&#x5e93;&#x7684;&#x94fe;&#x63a5;&#x3002;</p>
+<div class="source">
+<pre><a class="externalLink" href="http://github.com/dayatang/dbunit-maven-plugin/tree/master">http://github.com/dayatang/dbunit-maven-plugin/tree/master</a></pre></div></div>
 <div class="section">
-<h3><a name="Usage"></a>Usage</h3>
-<p>Instructions on how to use the DbUnit Maven Plugin can be found on the <a href="#usage.html">usage page</a>.</p></div>
+<h2><a name="a"></a>&#x533f;&#x540d;&#x8bbf;&#x95ee;</h2><a name="a"></a>
+<p>The source can be checked out anonymously from GIT with this command (See <a class="externalLink" href="http://git-scm.com/docs/git-clone">http://git-scm.com/docs/git-clone</a>):</p>
+<div class="source">
+<pre>$ git clone git://github.com/dayatang/dbunit-maven-plugin.git</pre></div></div>
 <div class="section">
-<h3><a name="Examples"></a>Examples</h3>
-<ul>
-<li><a href="#examplesclean-insert.html">Clear database and insert a dataset before test phase.</a></li>
-<li><a href="#examplesexport-full.html">Export entired database to a dataset file after test.</a></li>
-<li><a href="#examplessettings.html">Hide username/password in settings.xml.</a></li></ul>
-<p>A comprehensive and runnable example is available in <a class="externalLink" href="http://svn.codehaus.org/mojo/trunk/mojo/dbunit-maven-plugin/src/example">SVN</a></p></div></div>
+<h2><a name="a"></a>&#x5f00;&#x53d1;&#x8005;&#x8bbf;&#x95ee;</h2><a name="a"></a>
+<p>Only project developers can access the GIT tree via this method (See <a class="externalLink" href="http://git-scm.com/docs/git-clone">http://git-scm.com/docs/git-clone</a>).</p>
+<div class="source">
+<pre>$ git clone git@github.com:dayatang/dbunit-maven-plugin.git</pre></div></div>
+<div class="section">
+<h2><a name="a"></a>&#x901a;&#x8fc7;&#x9632;&#x706b;&#x5899;&#x8bbf;&#x95ee;</h2><a name="a"></a>
+<p>&#x8bf7;&#x53c2;&#x8003;&#x4f7f;&#x7528;&#x7684;&#x6e90;&#x4ee3;&#x7801;&#x7ba1;&#x7406;&#x5de5;&#x5177;&#x7684;&#x6587;&#x6863;&#x4ee5;&#x83b7;&#x5f97;&#x66f4;&#x591a;&#x7684;&#x901a;&#x8fc7;&#x9632;&#x706b;&#x5899;&#x8fdb;&#x884c;&#x8bbf;&#x95ee;&#x7684;&#x4fe1;&#x606f;&#x3002;</p></div>
                   </div>
             </div>
           </div>

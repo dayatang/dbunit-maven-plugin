@@ -7,11 +7,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Dan T. Tran
-dantran@gmail.com" />
     <meta name="Date-Revision-yyyymmdd" content="20141114" />
     <meta http-equiv="Content-Language" content="zh" />
-    <title>DbUnit Plugin &#x2013; Maven 2 DbUnit Plugin - Introduction</title>
+    <title>DbUnit Plugin &#x2013; 团队列表</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -59,7 +57,7 @@ dantran@gmail.com" />
         DbUnit Plugin</a>
         </li>
       <li class="divider ">/</li>
-        <li class="">Maven 2 DbUnit Plugin - Introduction</li>
+        <li class="">团队列表</li>
         
                 
                     
@@ -90,10 +88,12 @@ dantran@gmail.com" />
                 <ul class="nav nav-list">
                     <li class="nav-header">Overview</li>
                                 
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>Introduction</a>
-          </li>
+                          <a href="index.html" title="Introduction">
+          <i class="none"></i>
+        Introduction</a>
+            </li>
                   
       <li>
     
@@ -160,10 +160,12 @@ dantran@gmail.com" />
         Dependency Information</a>
             </li>
                       
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>欢迎来到</a>
-          </li>
+                          <a href="index.html" title="欢迎来到">
+          <i class="none"></i>
+        欢迎来到</a>
+            </li>
                       
       <li>
     
@@ -179,12 +181,10 @@ dantran@gmail.com" />
         邮件列表</a>
             </li>
                       
-      <li>
+      <li class="active">
     
-                          <a href="team-list.html" title="项目团队">
-          <i class="none"></i>
-        项目团队</a>
-            </li>
+            <a href="#"><i class="none"></i>项目团队</a>
+          </li>
                       
       <li>
     
@@ -263,24 +263,43 @@ dantran@gmail.com" />
         <div id="bodyColumn"  class="span9" >
                                   
             <div class="section">
-<h2><a name="DbUnit_Maven_Plugin"></a>DbUnit Maven Plugin</h2>
-<p>Use this plugin to execute <a class="externalLink" href="http://dbunit.sourceforge.net">DbUnit</a>'s utilities.</p>
+<h2><a name="a"></a>&#x56e2;&#x961f;</h2><a name="a"></a>
+<p>&#x4e00;&#x4e2a;&#x6210;&#x529f;&#x7684;&#x9879;&#x76ee;&#x8981;&#x6c42;&#x8bb8;&#x591a;&#x4eba;&#x626e;&#x6f14;&#x8bb8;&#x591a;&#x7684;&#x89d2;&#x8272;&#x3002;&#x5176;&#x4e2d;&#x4e00;&#x4e9b;&#x6210;&#x5458;&#x7f16;&#x5199;&#x4ee3;&#x7801;&#x6216;&#x8005;&#x6587;&#x6863;&#xff0c;&#x540c;&#x65f6;&#x5176;&#x4ed6;&#x6210;&#x5458;&#x5219;&#x901a;&#x8fc7;&#x6d4b;&#x8bd5;&#x3001;&#x6253;&#x8865;&#x4e01;&#x4ee5;&#x53ca;&#x63d0;&#x5efa;&#x8bae;&#x7b49;&#x65b9;&#x5f0f;&#x5b9e;&#x73b0;&#x81ea;&#x5df1;&#x7684;&#x4ef7;&#x503c;&#x3002;</p>
+<p>&#x4e00;&#x4e2a;&#x56e2;&#x961f;&#x7531;&#x56e2;&#x961f;&#x6210;&#x5458;&#x4ee5;&#x53ca;&#x8d21;&#x732e;&#x8005;&#x7ec4;&#x6210;&#x3002;&#x56e2;&#x961f;&#x6210;&#x5458;&#x76f4;&#x63a5;&#x8bbf;&#x95ee;&#x9879;&#x76ee;&#x7684;&#x6e90;&#x4ee3;&#x7801;&#x5e76;&#x79ef;&#x6781;&#x5730;&#x53c2;&#x4e0e;&#x7f16;&#x7801;&#x5de5;&#x4f5c;&#x3002;&#x8d21;&#x732e;&#x8005;&#x5219;&#x901a;&#x8fc7;&#x5411;&#x6210;&#x5458;&#x63d0;&#x4ea4;&#x8865;&#x4e01;&#x548c;&#x63d0;&#x51fa;&#x5efa;&#x8bae;&#x6765;&#x5b8c;&#x5584;&#x9879;&#x76ee;&#x3002;&#x4e00;&#x4e2a;&#x9879;&#x76ee;&#x4e2d;&#x8d21;&#x732e;&#x8005;&#x7684;&#x6570;&#x91cf;&#x662f;&#x4e0d;&#x9650;&#x7684;&#x3002;&#x8bf7;&#x7acb;&#x523b;&#x52a0;&#x5165;&#x5230;&#x8d21;&#x732e;&#x884c;&#x5217;&#x4e2d;&#x6765;&#x5427;&#x3002;&#x8877;&#x5fc3;&#x611f;&#x8c22;&#x6240;&#x6709;&#x5bf9;&#x9879;&#x76ee;&#x505a;&#x51fa;&#x8d21;&#x732e;&#x7684;&#x4eba;&#x3002;</p>
 <div class="section">
-<h3><a name="Goals_Overview"></a>Goals Overview</h3>
-<ul>
-<li><a href="#operation-mojo.html">dbunit:operation</a>: Execute a database operation using an external dataset file.</li>
-<li><a href="#export-mojo.html">dbunit:export</a>: Export database tables into a dataset file.</li>
-<li><a href="#compare-mojo.html">dbunit:compare</a>: Compare a dataset with database.</li></ul></div>
+<h3><a name="a"></a>&#x6210;&#x5458;</h3><a name="a"></a>
+<p>&#x4ee5;&#x4e0b;&#x662f;&#x5f00;&#x53d1;&#x8005;&#x7684;&#x5217;&#x8868;&#xff0c;&#x4ed6;&#x4eec;&#x6709;&#x63d0;&#x4ea4;&#x7684;&#x6743;&#x9650;&#xff0c;&#x5728;&#x9879;&#x76ee;&#x4e2d;&#x4ee5;&#x67d0;&#x79cd;&#x65b9;&#x5f0f;&#x76f4;&#x63a5;&#x505a;&#x51fa;&#x4e86;&#x8d21;&#x732e;&#x3002;</p>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Image</th>
+<th>Id</th>
+<th>&#x59d3;&#x540d;</th>
+<th>&#x7535;&#x5b50;&#x90ae;&#x4ef6;</th>
+<th>&#x89d2;&#x8272;</th></tr>
+<tr class="b">
+<td><img src="http://www.gravatar.com/avatar/be57145ca6de4eac49ac8febe070d66f?d=mm&amp;s=60" alt="" /></td>
+<td><a name="gdyangyu"></a>gdyangyu</td>
+<td>Yu Yang</td>
+<td><a class="externalLink" href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a></td>
+<td>administrator, developer</td></tr></table></div>
 <div class="section">
-<h3><a name="Usage"></a>Usage</h3>
-<p>Instructions on how to use the DbUnit Maven Plugin can be found on the <a href="#usage.html">usage page</a>.</p></div>
-<div class="section">
-<h3><a name="Examples"></a>Examples</h3>
-<ul>
-<li><a href="#examplesclean-insert.html">Clear database and insert a dataset before test phase.</a></li>
-<li><a href="#examplesexport-full.html">Export entired database to a dataset file after test.</a></li>
-<li><a href="#examplessettings.html">Hide username/password in settings.xml.</a></li></ul>
-<p>A comprehensive and runnable example is available in <a class="externalLink" href="http://svn.codehaus.org/mojo/trunk/mojo/dbunit-maven-plugin/src/example">SVN</a></p></div></div>
+<h3><a name="a"></a>&#x8d21;&#x732e;&#x8005;</h3><a name="a"></a>
+<p>&#x672c;&#x9879;&#x76ee;&#x6ca1;&#x6709;&#x76f8;&#x5173;&#x8d21;&#x732e;&#x8005;&#x3002;&#x8bf7;&#x4ee5;&#x540e;&#x518d;&#x67e5;&#x770b;&#x3002;</p><script type="text/javascript">
+function offsetDate(id, offset) {
+    var now = new Date();
+    var nowTime = now.getTime();
+    var localOffset = now.getTimezoneOffset();
+    var developerTime = nowTime + ( offset * 60 * 60 * 1000 )+ ( localOffset * 60 * 1000 );
+    var developerDate = new Date(developerTime);
+
+    document.getElementById(id).innerHTML = developerDate;
+}
+
+function init(){
+}
+
+window.onLoad = init();
+</script></div></div>
                   </div>
             </div>
           </div>

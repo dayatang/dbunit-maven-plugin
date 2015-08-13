@@ -188,10 +188,10 @@ public abstract class AbstractDbUnitMojo
 
         IDatabaseConnection connection = new DatabaseConnection(conn, schema);
         DatabaseConfig config = connection.getConfig();
-        config.setFeature(DatabaseConfig.FEATURE_BATCHED_STATEMENTS, supportBatchStatement);
-        config.setFeature(DatabaseConfig.FEATURE_QUALIFIED_TABLE_NAMES, useQualifiedTableNames);
-        config.setFeature(DatabaseConfig.FEATURE_DATATYPE_WARNING, datatypeWarning);
-        config.setFeature(DatabaseConfig.FEATURE_SKIP_ORACLE_RECYCLEBIN_TABLES, this.skipOracleRecycleBinTables);
+        config.setProperty(DatabaseConfig.FEATURE_BATCHED_STATEMENTS, supportBatchStatement);
+        config.setProperty(DatabaseConfig.FEATURE_QUALIFIED_TABLE_NAMES, useQualifiedTableNames);
+        config.setProperty(DatabaseConfig.FEATURE_DATATYPE_WARNING, datatypeWarning);
+        config.setProperty(DatabaseConfig.FEATURE_SKIP_ORACLE_RECYCLEBIN_TABLES, this.skipOracleRecycleBinTables);
 
         config.setProperty(DatabaseConfig.PROPERTY_ESCAPE_PATTERN, escapePattern);
         config.setProperty(DatabaseConfig.PROPERTY_RESULTSET_TABLE_FACTORY, new ForwardOnlyResultSetTableFactory());

@@ -124,6 +124,7 @@ public class ExportMojo
                 export.setEncoding(encoding);
 
                 export.execute(connection);
+                getLog().info("Database exported as " + dest.getAbsolutePath());
             } finally {
                 connection.close();
             }

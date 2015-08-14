@@ -83,7 +83,7 @@ public class ExportDtdMojo
                         connection.createDataSet());
                 Writer out = new OutputStreamWriter(new FileOutputStream(dest), encoding);
                 FlatDtdDataSet.write(dataSet, out);
-
+                getLog().info("DTD file exported as " + dest.getAbsolutePath());
             } finally {
                 connection.close();
             }

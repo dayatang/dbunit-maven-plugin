@@ -93,6 +93,7 @@ public class OperationMojo
                 op.setTransaction(transaction);
                 op.setType(type);
                 op.execute(connection);
+                getLog().info("Data is imported from " + src.getAbsolutePath());
             } finally {
                 connection.close();
             }
